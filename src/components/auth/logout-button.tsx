@@ -1,11 +1,10 @@
 "use client"
 
-import * as React from "react"
 import { Icon } from "@yopem-ui/react-icons"
 
 import { handleLogOut } from "./action"
 
-const LogoutButton: React.FC = () => {
+const LogoutButton = () => {
   return (
     <form action={void handleLogOut}>
       <button

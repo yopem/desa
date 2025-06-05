@@ -3,11 +3,12 @@
 import * as React from "react"
 import { ThemeProvider as NextThemeProvider } from "next-themes"
 
-interface ThemeProviderProps {
+interface ThemeProviderProps
+  extends React.ComponentProps<typeof NextThemeProvider> {
   children: React.ReactNode
 }
 
-const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = (props) => {
+const ThemeProvider = (props: ThemeProviderProps) => {
   const { children } = props
 
   return (

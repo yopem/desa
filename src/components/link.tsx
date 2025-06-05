@@ -13,7 +13,7 @@ interface LinkProps extends Omit<NextLinkProps, "prefetch"> {
   name?: string
 }
 
-const Link: React.FC<LinkProps> = (props) => {
+const Link = (props: LinkProps) => {
   const {
     children,
     className,
