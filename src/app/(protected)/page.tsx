@@ -1,13 +1,7 @@
-import LogoutButton from "@/components/auth/logout-button"
-
-export default function HomePage() {
+export default function Page() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold">Welcome to the Protected Page</h1>
-      <p className="mt-4 text-lg">
-        You are authenticated and can access this page.
-      </p>
-      <LogoutButton />
+    <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+      <h1 className="text-2xl font-bold">Halo, Ganteng!</h1>
     </div>
   )
 }
