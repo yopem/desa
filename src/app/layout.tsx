@@ -4,10 +4,10 @@ import { type Metadata } from "next"
 import localFont from "next/font/local"
 
 import Providers from "@/components/providers"
-import { siteDescription, siteTitle } from "@/lib/env/client"
+import { siteDescription, siteTagline, siteTitle } from "@/lib/env/client"
 
 export const metadata: Metadata = {
-  title: siteTitle,
+  title: `${siteTitle} - ${siteTagline}`,
   description: siteDescription,
   icons: [{ rel: "icon", url: "/favicon.png" }],
 }
