@@ -6,13 +6,6 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
     const response = NextResponse.next()
 
     const token = request.cookies.get("session")?.value ?? null
-    const url = request.nextUrl.clone()
-    const isAuthPage = url.pathname.startsWith("/auth/")
-
-    if (token === null && !isAuthPage) {
-      url.pathname = "/auth/login"
-      return NextResponse.redirect(url)
-    }
 
     if (token !== null) {
       response.cookies.set("session", token, {
