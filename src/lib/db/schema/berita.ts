@@ -9,7 +9,7 @@ export const beritaTable = pgTable("berita", {
     .$defaultFn(() => createCustomId()),
   judul: text("judul").notNull(),
   slug: text("slug").unique().notNull(),
-  content: text("content"),
+  content: text("content").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 })

@@ -1,0 +1,1 @@
+ALTER TABLE "berita" ALTER COLUMN "content" SET NOT NULL;

@@ -15,6 +15,13 @@
       "when": 1749180244007,
       "tag": "0001_melodic_sunfire",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1749275137408,
+      "tag": "0002_fat_glorian",
+      "breakpoints": true
     }
   ]
 }

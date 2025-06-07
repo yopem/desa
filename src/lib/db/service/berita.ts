@@ -1,0 +1,93 @@
+import { count, eq } from "drizzle-orm"
+
+import { db } from "@/lib/db"
+import { beritaTable, type InsertBerita } from "@/lib/db/schema/berita"
+import { slugify } from "@/lib/utils/slug"
+
+interface InsertBeritaProps extends Omit<InsertBerita, "slug"> {}
+
+export const insertBerita = async (data: InsertBeritaProps) => {
+  const berita = await db
+    .insert(beritaTable)
+    .values({
+      ...data,
+      slug: await generateUniqueBeritaSlug(data.judul),
+    })
+    .returning()
+
+  return berita[0]
+}
+
+interface UpdateBeritaProps extends InsertBerita {
+  id: string
+}
+
+export const updateBerita = async (data: UpdateBeritaProps) => {
+  const berita = await db
+    .update(beritaTable)
+    .set(data)
+    .where(eq(beritaTable.id, data.id))
+    .returning()
+
+  return berita[0]
+}
+
+export const deleteBerita = async (id: string) => {
+  const berita = await db
+    .delete(beritaTable)
+    .where(eq(beritaTable.id, id))
+    .returning()
+  return berita[0]
+}
+
+export const getBeritas = async () => {
+  return await db.query.beritaTable.findMany()
+}
+
+export const getBeritaBySlug = async (slug: string) => {
+  return await db.query.beritaTable.findFirst({
+    where: (berita, { eq }) => eq(berita.slug, slug),
+  })
+}
+
+export const searchBeritas = async ({
+  searchQuery,
+  limit,
+}: {
+  searchQuery: string
+  limit: number
+}) => {
+  return await db.query.beritaTable.findMany({
+    where: (beritas, { and, or, ilike }) =>
+      and(
+        or(
+          ilike(beritas.judul, `%${searchQuery}%`),
+          ilike(beritas.slug, `%${searchQuery}%`),
+        ),
+      ),
+    limit: limit,
+  })
+}
+
+export const countBeritas = async () => {
+  return await db.select({ value: count() }).from(beritaTable)
+}
+
+export const generateUniqueBeritaSlug = async (
+  judul: string,
+): Promise<string> => {
+  const slug = slugify(judul)
+  let uniqueSlug = slug
+  let suffix = 1
+
+  while (
+    await db.query.beritaTable.findFirst({
+      where: (berita, { eq }) => eq(berita.slug, uniqueSlug),
+    })
+  ) {
+    suffix++
+    uniqueSlug = `${slug}${suffix}`
+  }
+
+  return uniqueSlug
+}
