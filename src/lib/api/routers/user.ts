@@ -2,10 +2,48 @@ import { TRPCError } from "@trpc/server"
 import { tryCatch } from "@yopem/try-catch"
 import { z } from "zod"
 
-import { createTRPCRouter, publicProcedure } from "@/lib/api/trpc"
-import { getUserByUsername, searchUsers } from "@/lib/db/service/user"
+import {
+  adminProtectedProcedure,
+  createTRPCRouter,
+  publicProcedure,
+} from "@/lib/api/trpc"
+import {
+  countUsers,
+  deleteUser,
+  getUserByUsername,
+  getUsers,
+  searchUsers,
+} from "@/lib/db/service/user"
 
 export const userRouter = createTRPCRouter({
+  delete: adminProtectedProcedure
+    .input(z.string())
+    .mutation(async ({ input }) => {
+      const { data, error } = await tryCatch(deleteUser(input))
+      if (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error deleting user",
+        })
+      }
+      return data
+    }),
+
+  all: adminProtectedProcedure
+    .input(z.object({ page: z.number(), perPage: z.number() }))
+    .query(async ({ input }) => {
+      const { data, error } = await tryCatch(
+        getUsers(input.page, input.perPage),
+      )
+      if (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error fetching users",
+        })
+      }
+      return data
+    }),
+
   byUsername: publicProcedure.input(z.string()).query(async ({ input }) => {
     const { data, error } = await tryCatch(getUserByUsername(input))
     if (error) {
@@ -29,4 +67,15 @@ export const userRouter = createTRPCRouter({
       }
       return data
     }),
+
+  count: publicProcedure.query(async () => {
+    const { data, error } = await tryCatch(countUsers())
+    if (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Error counting users",
+      })
+    }
+    return data
+  }),
 })

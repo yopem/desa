@@ -70,7 +70,8 @@ export const searchBeritas = async ({
 }
 
 export const countBeritas = async () => {
-  return await db.select({ value: count() }).from(beritaTable)
+  const berita = await db.select({ value: count() }).from(beritaTable)
+  return berita[0]?.value ?? 0
 }
 
 export const generateUniqueBeritaSlug = async (

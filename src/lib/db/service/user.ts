@@ -48,6 +48,14 @@ export const deleteUser = async (id: string) => {
   return user[0]
 }
 
+export const getUsers = async (page: number, perPage: number) => {
+  return await db.query.userTable.findMany({
+    limit: perPage,
+    offset: (page - 1) * perPage,
+    orderBy: (users, { desc }) => [desc(users.createdAt)],
+  })
+}
+
 export const getExistingUser = async (providerAccountId: string) => {
   return await db.query.accountTable.findFirst({
     where: (accounts, { and, eq }) =>
@@ -84,7 +92,8 @@ export const searchUsers = async ({
 }
 
 export const countUsers = async () => {
-  return await db.select({ value: count() }).from(userTable)
+  const users = await db.select({ value: count() }).from(userTable)
+  return users[0]?.value ?? 0
 }
 
 export const generateUniqueUsername = async (name: string): Promise<string> => {
