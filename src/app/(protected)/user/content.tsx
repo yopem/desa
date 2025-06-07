@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
-import { useQuery } from "@tanstack/react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 
+import { Skeleton } from "@/components/ui/skeleton"
 import { useTRPC } from "@/lib/trpc/client"
 import UserTable from "./table"
 
@@ -16,17 +17,13 @@ export default function UserContent() {
 
   const trpc = useTRPC()
 
-  const { data: usersCount, refetch: updateUsersCount } = useQuery(
+  const { data: usersCount, refetch: updateUsersCount } = useSuspenseQuery(
     trpc.user.count.queryOptions(),
   )
 
   const lastPage = usersCount && Math.ceil(usersCount / perPage)
 
-  const {
-    data: users,
-    isLoading,
-    refetch: updateUsers,
-  } = useQuery(
+  const { data: users, refetch: updateUsers } = useSuspenseQuery(
     trpc.user.all.queryOptions({
       page: page ? parseInt(page) : 1,
       perPage: perPage,
@@ -39,24 +36,25 @@ export default function UserContent() {
     }
   }, [lastPage, page])
 
+  if (users.length === 0 || !usersCount) {
+    return (
+      <div className="my-64 flex items-center justify-center">
+        <Skeleton />
+        <h3 className="text-center text-4xl font-bold">
+          Pengguna tidak ditemukan!
+        </h3>
+      </div>
+    )
+  }
+
   return (
-    <>
-      {!isLoading && users !== undefined && users.length > 0 ? (
-        <UserTable
-          users={users}
-          paramsName="page"
-          page={page ? parseInt(page) : 1}
-          lastPage={lastPage ?? 3}
-          updateUsers={updateUsers}
-          updateUsersCount={updateUsersCount}
-        />
-      ) : (
-        <div className="my-64 flex items-center justify-center">
-          <h3 className="text-center text-4xl font-bold">
-            Pengguna tidak ditemukan!
-          </h3>
-        </div>
-      )}
-    </>
+    <UserTable
+      users={users}
+      paramsName="page"
+      page={page ? parseInt(page) : 1}
+      lastPage={lastPage}
+      updateUsers={updateUsers}
+      updateUsersCount={updateUsersCount}
+    />
   )
 }
