@@ -1,7 +1,14 @@
+import * as React from "react"
+
+import StatisticCard from "@/components/statistic-card"
+import { HydrateClient, prefetch, trpc } from "@/lib/trpc/server"
+
 export default function Page() {
+  prefetch(trpc.user.count.queryOptions())
+
   return (
-    <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-      <h1 className="text-2xl font-bold">Halo, Ganteng!</h1>
-    </div>
+    <HydrateClient>
+      <StatisticCard />
+    </HydrateClient>
   )
 }
