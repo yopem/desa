@@ -5,12 +5,15 @@ import NextLink, { type LinkProps as NextLinkProps } from "next/link"
 import { useRouter } from "next/navigation"
 import { ForesightManager, type ForesightRect } from "js.foresight"
 
-interface LinkProps extends Omit<NextLinkProps, "prefetch"> {
+interface LinkProps
+  extends Omit<NextLinkProps, "prefetch">,
+    React.HTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode
   className?: string
   hitSlop?: number | ForesightRect
   unregisterOnCallback?: boolean
   name?: string
+  target?: "_blank" | "_self" | "_parent" | "_top"
 }
 
 const Link = (props: LinkProps) => {
@@ -20,6 +23,7 @@ const Link = (props: LinkProps) => {
     hitSlop = 0,
     unregisterOnCallback = true,
     name = "",
+    target = "_self",
     ...rest
   } = props
 
@@ -55,6 +59,7 @@ const Link = (props: LinkProps) => {
       prefetch={isTouchDevice}
       ref={LinkRef}
       className={className}
+      target={target}
       {...rest}
     >
       {children}

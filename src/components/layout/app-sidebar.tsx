@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import NextLink from "next/link"
 
 import NavMain from "@/components/layout/nav-main"
 import NavUser from "@/components/layout/nav-user"
+import Link from "@/components/link"
 import {
   Sidebar,
   SidebarContent,
@@ -42,11 +42,11 @@ const AppSidebar = (props: AppSidebarProps) => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <NextLink href="/">
+              <Link href="/">
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">{siteTitle}</span>
                 </div>
-              </NextLink>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -2,10 +2,10 @@
 
 import type { UrlObject } from "url"
 import * as React from "react"
-import NextLink from "next/link"
 import { Icon } from "@yopem-ui/react-icons"
 
 import AlertDelete from "@/components/alert-delete"
+import Link from "@/components/link"
 import {
   Menu,
   MenuContent,
@@ -47,26 +47,26 @@ const ShowOptions = (props: ShowOptionsProps) => {
           )}
           {editUrl && (
             <MenuItem value="Edit" asChild>
-              <NextLink href={editUrl}>
+              <Link href={editUrl}>
                 <Icon name="Edit" className="mr-2 size-4" />
                 Edit
-              </NextLink>
+              </Link>
             </MenuItem>
           )}
           {editUrlNewTab && (
             <MenuItem value="Edit" asChild>
-              <NextLink href={editUrlNewTab} target="_blank">
+              <Link href={editUrlNewTab} target="_blank">
                 <Icon name="Edit" className="mr-2 size-4" />
                 Edit
-              </NextLink>
+              </Link>
             </MenuItem>
           )}
           {viewUrl && (
             <MenuItem value="Lihat" asChild>
-              <NextLink href={viewUrl} target="_blank">
+              <Link href={viewUrl} target="_blank">
                 <Icon name="Eye" className="mr-2 size-4" />
                 Lihat
-              </NextLink>
+              </Link>
             </MenuItem>
           )}
         </MenuContent>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
-import NextLink from "next/link"
 
 import "@/styles/globals.css"
 
+import Link from "@/components/link"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function NotFound() {
                 explore on the home page.
               </p>
               <Button asChild aria-label="Go To Homepage">
-                <NextLink href="/">Back to Homepage</NextLink>
+                <Link href="/">Back to Homepage</Link>
               </Button>
             </div>
           </div>
