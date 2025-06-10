@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/node-postgres"
 
 import { databaseUrl } from "@/lib/env/server"
+import { agendaTable } from "./schema/agenda"
 import { beritaTable } from "./schema/berita"
 import { inventarisTable } from "./schema/inventaris"
 import { peraturanTable } from "./schema/peraturan"
@@ -14,6 +15,7 @@ export const db = drizzle(databaseUrl, {
     sessionTable,
     userTable,
     // data
+    agendaTable,
     beritaTable,
     inventarisTable,
     peraturanTable,

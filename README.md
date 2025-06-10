@@ -15,4 +15,5 @@
   - [x] A2 Buku Keputusan Kepala Desa = keputusan
   - [x] A3 Buku Inventaris Desa = inventaris
   - [ ] A4 Buku Aparat Pemerintah Desa = aparat
-  - [ ] A5 Buku Tanah Kas Desa = tanah_kas
+  - [x] A5 Buku Tanah Kas Desa = tanah_kas
+- [x] A6 Buku Agenda Desa = agenda
