@@ -5,6 +5,7 @@ import { beritaTable } from "./schema/berita"
 import { inventarisTable } from "./schema/inventaris"
 import { peraturanTable } from "./schema/peraturan"
 import { rabTable } from "./schema/rab"
+import { tanahKasTable } from "./schema/tanah-kas"
 import { accountTable, sessionTable, userTable } from "./schema/user"
 
 export const db = drizzle(databaseUrl, {
@@ -17,5 +18,6 @@ export const db = drizzle(databaseUrl, {
     inventarisTable,
     peraturanTable,
     rabTable,
+    tanahKasTable,
   },
 })
