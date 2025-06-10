@@ -78,6 +78,13 @@
       "when": 1749545277919,
       "tag": "0010_secret_smasher",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1749546081755,
+      "tag": "0011_robust_wild_pack",
+      "breakpoints": true
     }
   ]
 }

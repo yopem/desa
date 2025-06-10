@@ -76,5 +76,5 @@ export const updatePeraturanSchema = createUpdateSchema(peraturanTable).refine(
   },
 )
 
-export type SelectPeraturanDesa = typeof peraturanTable.$inferSelect
-export type InsertPeraturanDesa = typeof peraturanTable.$inferInsert
+export type SelectPeraturan = typeof peraturanTable.$inferSelect
+export type InsertPeraturan = typeof peraturanTable.$inferInsert

@@ -18,11 +18,7 @@ export const insertBerita = async (data: InsertBeritaProps) => {
   return berita[0]
 }
 
-interface UpdateBeritaProps extends InsertBerita {
-  id: string
-}
-
-export const updateBerita = async (data: UpdateBeritaProps) => {
+export const updateBerita = async (data: InsertBerita & { id: string }) => {
   const berita = await db
     .update(beritaTable)
     .set(data)
@@ -40,8 +36,12 @@ export const deleteBerita = async (id: string) => {
   return berita[0]
 }
 
-export const getBeritas = async () => {
-  return await db.query.beritaTable.findMany()
+export const getBeritas = async (page: number, perPage: number) => {
+  return await db.query.beritaTable.findMany({
+    limit: perPage,
+    offset: (page - 1) * perPage,
+    orderBy: (users, { desc }) => [desc(users.createdAt)],
+  })
 }
 
 export const getBeritaBySlug = async (slug: string) => {
