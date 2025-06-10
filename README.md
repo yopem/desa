@@ -10,7 +10,7 @@
 
 ## Penggunaan API / Database
 
-- Administrasi Umum
+- Administrasi > Buku Administrasi > Administrasi Umum
   - [x] A1 Buku Peraturan Desa = peraturan
   - [x] A2 Buku Keputusan Kepala Desa = keputusan
   - [x] A3 Buku Inventaris Desa = inventaris
@@ -18,3 +18,5 @@
   - [x] A5 Buku Tanah Kas Desa = tanah_kas
   - [x] A6 Buku Tanah Desa = tanah
   - [x] A7 Buku Agenda Desa = agenda
+  - [x] A8 Buku Ekspedisi = ekspedisi
+  - [x] A9 Buku Lembaran dan Buku Berita Desa = lembaran

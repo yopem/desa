@@ -5,6 +5,7 @@ import { agendaTable } from "./schema/agenda"
 import { beritaTable } from "./schema/berita"
 import { ekspedisiTable } from "./schema/ekspedisi"
 import { inventarisTable } from "./schema/inventaris"
+import { lembaranTable } from "./schema/lembaran"
 import { peraturanTable } from "./schema/peraturan"
 import { rabTable } from "./schema/rab"
 import { tanahTable } from "./schema/tanah"
@@ -13,6 +14,7 @@ import { accountTable, sessionTable, userTable } from "./schema/user"
 
 export const db = drizzle(databaseUrl, {
   schema: {
+    // auth
     accountTable,
     sessionTable,
     userTable,
@@ -21,6 +23,7 @@ export const db = drizzle(databaseUrl, {
     beritaTable,
     ekspedisiTable,
     inventarisTable,
+    lembaranTable,
     peraturanTable,
     rabTable,
     tanahKasTable,
