@@ -54,8 +54,8 @@ export default function UserTable(props: UserTableProps) {
   )
 
   return (
-    <div className="relative w-full overflow-auto">
-      <Table className="table-fixed border-collapse border-spacing-0">
+    <div className="relative min-h-[100vh] w-full overflow-auto">
+      <Table className="table-auto border-collapse border-spacing-0">
         <TableHeader>
           <TableRow>
             <TableHead>Nama</TableHead>

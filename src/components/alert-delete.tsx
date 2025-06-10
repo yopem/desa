@@ -40,7 +40,7 @@ const AlertDelete = (props: AlertDeleteProps) => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <DialogCloseTrigger asChild>
+            <DialogCloseTrigger>
               <Button onClick={handleDeleteAndClose}>Ya</Button>
               <Button variant="outline" onClick={onClose}>
                 Tidak
