@@ -4,28 +4,26 @@ import z from "zod"
 
 import { createCustomId } from "@/lib/utils/custom-id"
 
-export const JENIS_PERATURAN_BUKU_PERATURAN_DESA = [
+export const JENIS_PERATURAN_DESA = [
   "peraturan_desa",
   "peraturan_bersama",
   "peraturan_kepala_desa",
 ] as const
 
-export const jenisPeraturanBukuPeraturanDesa = z.enum(
-  JENIS_PERATURAN_BUKU_PERATURAN_DESA,
+export const jenisPeraturannDesa = z.enum(JENIS_PERATURAN_DESA)
+
+export const jenisPeraturannDesaEnum = pgEnum(
+  "jenis_peraturan_desa",
+  JENIS_PERATURAN_DESA,
 )
 
-export const jenisPeraturanBukuPeraturanDesaEnum = pgEnum(
-  "jenis_peraturan_buku_peraturan_desa",
-  JENIS_PERATURAN_BUKU_PERATURAN_DESA,
-)
-
-export const bukuPeraturanDesaTable = pgTable("buku_peraturan_desa", {
+export const peraturanDesaTable = pgTable("peraturan_desa", {
   id: text()
     .primaryKey()
     .$defaultFn(() => createCustomId()),
   judul: text("judul").notNull(),
   uraian: text("uraian").notNull(),
-  jenisPeraturan: jenisPeraturanBukuPeraturanDesaEnum("jenis_peraturan")
+  jenisPeraturan: jenisPeraturannDesaEnum("jenis_peraturan")
     .notNull()
     .default("peraturan_desa"),
   nomorSuratDitetapkan: text("nomor_surat_ditetapkan").notNull(),
@@ -48,8 +46,8 @@ export const bukuPeraturanDesaTable = pgTable("buku_peraturan_desa", {
   updatedAt: timestamp("updated_at").defaultNow(),
 })
 
-export const insertBukuPeraturanDesaSchema = createInsertSchema(
-  bukuPeraturanDesaTable,
+export const insertPeraturanDesaSchema = createInsertSchema(
+  peraturanDesaTable,
 ).refine(
   (data) => {
     if (data.jenisPeraturan !== "peraturan_kepala_desa") {
@@ -64,8 +62,8 @@ export const insertBukuPeraturanDesaSchema = createInsertSchema(
   },
 )
 
-export const updateBukuPeraturanDesaSchema = createUpdateSchema(
-  bukuPeraturanDesaTable,
+export const updatePeraturanDesaSchema = createUpdateSchema(
+  peraturanDesaTable,
 ).refine(
   (data) => {
     if (data.jenisPeraturan === undefined) return true
@@ -85,5 +83,5 @@ export const updateBukuPeraturanDesaSchema = createUpdateSchema(
   },
 )
 
-export type SelectBukuPeraturanDesa = typeof bukuPeraturanDesaTable.$inferSelect
-export type InsertBukuPeraturanDesa = typeof bukuPeraturanDesaTable.$inferInsert
+export type SelectPeraturanDesa = typeof peraturanDesaTable.$inferSelect
+export type InsertPeraturanDesa = typeof peraturanDesaTable.$inferInsert
