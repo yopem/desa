@@ -7,7 +7,7 @@ export const rabTable = pgTable("rab", {
   id: text()
     .primaryKey()
     .$defaultFn(() => createCustomId()),
-  bidang: text("judul").notNull(),
+  bidang: text("bidang").notNull(),
   waktuPelaksanaan: text("waktu_pelaksanaan").notNull(),
   kegiatan: text("kegiatan").notNull(),
   createdAt: timestamp("created_at").defaultNow(),

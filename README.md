@@ -7,3 +7,16 @@
   terpisah dari form Form Buku Peraturan Desa tapi di Form Buku Peraturan Desa
   juga dapat membuat Keputusan Kepala Desa tapi saat opsi ini dipilih maka tidak
   menampilakn Surat Diundangkan dan Tanggal Surat Diundangkan.
+
+## Penggunaan API / Database
+
+- Administrasi > Buku Administrasi > Administrasi Umum
+  - [x] A1 Buku Peraturan Desa = peraturan
+  - [x] A2 Buku Keputusan Kepala Desa = keputusan
+  - [x] A3 Buku Inventaris Desa = inventaris
+  - [ ] A4 Buku Aparat Pemerintah Desa = aparat
+  - [x] A5 Buku Tanah Kas Desa = tanah_kas
+  - [x] A6 Buku Tanah Desa = tanah
+  - [x] A7 Buku Agenda Desa = agenda
+  - [x] A8 Buku Ekspedisi = ekspedisi
+  - [x] A9 Buku Lembaran dan Buku Berita Desa = lembaran

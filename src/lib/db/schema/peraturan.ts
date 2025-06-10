@@ -4,26 +4,23 @@ import z from "zod"
 
 import { createCustomId } from "@/lib/utils/custom-id"
 
-export const JENIS_PERATURAN_DESA = [
+export const JENIS_PERATURAN = [
   "peraturan_desa",
   "peraturan_bersama",
   "peraturan_kepala_desa",
 ] as const
 
-export const jenisPeraturannDesa = z.enum(JENIS_PERATURAN_DESA)
+export const jenisPeraturan = z.enum(JENIS_PERATURAN)
 
-export const jenisPeraturannDesaEnum = pgEnum(
-  "jenis_peraturan_desa",
-  JENIS_PERATURAN_DESA,
-)
+export const jenisPeraturanEnum = pgEnum("jenis_peraturan", JENIS_PERATURAN)
 
-export const peraturanDesaTable = pgTable("peraturan_desa", {
+export const peraturanTable = pgTable("peraturan", {
   id: text()
     .primaryKey()
     .$defaultFn(() => createCustomId()),
   judul: text("judul").notNull(),
   uraian: text("uraian").notNull(),
-  jenisPeraturan: jenisPeraturannDesaEnum("jenis_peraturan")
+  jenisPeraturan: jenisPeraturanEnum("jenis_peraturan")
     .notNull()
     .default("peraturan_desa"),
   nomorSuratDitetapkan: text("nomor_surat_ditetapkan").notNull(),
@@ -46,9 +43,7 @@ export const peraturanDesaTable = pgTable("peraturan_desa", {
   updatedAt: timestamp("updated_at").defaultNow(),
 })
 
-export const insertPeraturanDesaSchema = createInsertSchema(
-  peraturanDesaTable,
-).refine(
+export const insertPeraturanSchema = createInsertSchema(peraturanTable).refine(
   (data) => {
     if (data.jenisPeraturan !== "peraturan_kepala_desa") {
       return !!data.nomorSuratDiundangkan && !!data.tanggalSuratDiundangkan
@@ -62,9 +57,7 @@ export const insertPeraturanDesaSchema = createInsertSchema(
   },
 )
 
-export const updatePeraturanDesaSchema = createUpdateSchema(
-  peraturanDesaTable,
-).refine(
+export const updatePeraturanSchema = createUpdateSchema(peraturanTable).refine(
   (data) => {
     if (data.jenisPeraturan === undefined) return true
     if (data.jenisPeraturan !== "peraturan_kepala_desa") {
@@ -83,5 +76,5 @@ export const updatePeraturanDesaSchema = createUpdateSchema(
   },
 )
 
-export type SelectPeraturanDesa = typeof peraturanDesaTable.$inferSelect
-export type InsertPeraturanDesa = typeof peraturanDesaTable.$inferInsert
+export type SelectPeraturan = typeof peraturanTable.$inferSelect
+export type InsertPeraturan = typeof peraturanTable.$inferInsert

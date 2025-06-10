@@ -1,0 +1,1 @@
+ALTER TABLE "rab" RENAME COLUMN "judul" TO "bidang";

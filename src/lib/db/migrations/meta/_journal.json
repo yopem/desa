@@ -36,6 +36,55 @@
       "when": 1749527580386,
       "tag": "0004_messy_iron_patriot",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1749539686854,
+      "tag": "0005_green_leader",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1749540147832,
+      "tag": "0006_dark_wendell_vaughn",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1749540365299,
+      "tag": "0007_faithful_lockjaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1749540826596,
+      "tag": "0008_grey_toad_men",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1749544875833,
+      "tag": "0009_careful_blue_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1749545277919,
+      "tag": "0010_secret_smasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1749546081755,
+      "tag": "0011_robust_wild_pack",
+      "breakpoints": true
     }
   ]
 }
