@@ -10,7 +10,8 @@ import {
   Menu,
   MenuContent,
   MenuItem,
-  MenuTriggerItem,
+  MenuItemGroup,
+  MenuTrigger,
 } from "@/components/ui/menu"
 import { Button } from "./ui/button"
 
@@ -31,44 +32,50 @@ const ShowOptions = (props: ShowOptionsProps) => {
   return (
     <>
       <Menu>
-        <MenuTriggerItem asChild>
+        <MenuTrigger asChild>
           <Button variant="ghost" size="sm" className="ml-auto flex h-8">
             <Icon name="EllipsisVertical" className="mr-2 size-4" />
           </Button>
-        </MenuTriggerItem>
+        </MenuTrigger>
         <MenuContent className="w-[150px] p-2">
-          {onDelete && (
-            <MenuItem value="Hapus" asChild>
-              <Button onClick={() => setOpenDialogDelete(true)}>
-                <Icon name="Trash" className="mr-2 size-4" />
-                Hapus
-              </Button>
-            </MenuItem>
-          )}
-          {editUrl && (
-            <MenuItem value="Edit" asChild>
-              <Link href={editUrl}>
-                <Icon name="Edit" className="mr-2 size-4" />
-                Edit
-              </Link>
-            </MenuItem>
-          )}
-          {editUrlNewTab && (
-            <MenuItem value="Edit" asChild>
-              <Link href={editUrlNewTab} target="_blank">
-                <Icon name="Edit" className="mr-2 size-4" />
-                Edit
-              </Link>
-            </MenuItem>
-          )}
-          {viewUrl && (
-            <MenuItem value="Lihat" asChild>
-              <Link href={viewUrl} target="_blank">
-                <Icon name="Eye" className="mr-2 size-4" />
-                Lihat
-              </Link>
-            </MenuItem>
-          )}
+          <MenuItemGroup>
+            {onDelete && (
+              <MenuItem value="Hapus" asChild>
+                <Button
+                  variant="ghost"
+                  onClick={() => setOpenDialogDelete(true)}
+                  className="w-full justify-start !px-2 py-1.5 text-sm"
+                >
+                  <Icon name="Trash" className="mr-2 size-4" />
+                  Hapus
+                </Button>
+              </MenuItem>
+            )}
+            {editUrl && (
+              <MenuItem value="Edit" asChild>
+                <Link href={editUrl}>
+                  <Icon name="Edit" className="mr-2 size-4" />
+                  Edit
+                </Link>
+              </MenuItem>
+            )}
+            {editUrlNewTab && (
+              <MenuItem value="Edit" asChild>
+                <Link href={editUrlNewTab} target="_blank">
+                  <Icon name="Edit" className="mr-2 size-4" />
+                  Edit
+                </Link>
+              </MenuItem>
+            )}
+            {viewUrl && (
+              <MenuItem value="Lihat" asChild>
+                <Link href={viewUrl} target="_blank">
+                  <Icon name="Eye" className="mr-2 size-4" />
+                  Lihat
+                </Link>
+              </MenuItem>
+            )}
+          </MenuItemGroup>
         </MenuContent>
       </Menu>
       {onDelete && (
