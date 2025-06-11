@@ -1,5 +1,9 @@
 # Pintu Desa
 
+## Komponen yang beru dibuat
+
+- [ ] Chart
+
 ## NOTE:
 
 - Form Keputusan Kepala Desa menggunakan database dari Buku Peraturan Desa tapi
