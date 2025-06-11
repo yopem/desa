@@ -11,12 +11,24 @@
 ## Penggunaan API / Database
 
 - Administrasi > Buku Administrasi > Administrasi Umum
+
   - [x] A1 Buku Peraturan Desa = peraturan
   - [x] A2 Buku Keputusan Kepala Desa = keputusan
   - [x] A3 Buku Inventaris Desa = inventaris
-  - [ ] A4 Buku Aparat Pemerintah Desa = aparat
+  - [ ] A4 Buku Aparat Pemerintah Desa = aparat (butuh data aparat pemerintah
+        desa)
   - [x] A5 Buku Tanah Kas Desa = tanah_kas
   - [x] A6 Buku Tanah Desa = tanah
   - [x] A7 Buku Agenda Desa = agenda
   - [x] A8 Buku Ekspedisi = ekspedisi
   - [x] A9 Buku Lembaran dan Buku Berita Desa = lembaran
+
+- Administrasi > Buku Administrasi > Administrasi Penduduk Desa
+  - [ ] B1 Buku Induk Penduduk Desa = penduduk (butuh data penduduk desa, tidak
+        ada crud)
+  - [ ] B2 Buku Mutasi Penduduk Desa = mutasi (butuh data penduduk desa, tidak
+  - [ ] B3 Buku Rekapitulasi Jumlah Penduduk Desa = rekapitulasi (butuh data
+        penduduk desa, tidak ada crud)
+  - [ ] B4 Buku Penduduk Sementara = penduduk_sementara
+  - [ ] B5 Buku Kartu Tanda Penduduk dan Kartu Keluarga = ktp_kk (butuh data
+        penduduk desa, tidak ada crud)
