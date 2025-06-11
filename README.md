@@ -24,6 +24,7 @@
   - [x] A9 Buku Lembaran dan Buku Berita Desa = lembaran
 
 - Administrasi > Buku Administrasi > Administrasi Penduduk Desa
+
   - [ ] B1 Buku Induk Penduduk Desa = penduduk (butuh data penduduk desa, tidak
         ada crud)
   - [ ] B2 Buku Mutasi Penduduk Desa = mutasi (butuh data penduduk desa, tidak
@@ -32,3 +33,12 @@
   - [ ] B4 Buku Penduduk Sementara = penduduk_sementara
   - [ ] B5 Buku Kartu Tanda Penduduk dan Kartu Keluarga = ktp_kk (butuh data
         penduduk desa, tidak ada crud)
+
+- Administrasi > Buku Administrasi > Administrasi Keuangan Desa
+  - [ ] C1 Buku Anggaran Pendapatan dan Belanja Desa = anggaran (_lihat contoh
+        form_)
+  - [x] C2 Buku Rencana Anggaran Biaya Desa = rab
+  - [ ] C3 Buku Kas Pembantu Kegiatan = kas_pembantu_kegiatan
+  - [ ] C4 Buku Kas Umum = kas_umum
+  - [ ] C5 Buku Kas Pembantu = kas_pembantu
+  - [ ] C6 Buku Bank Desa = bank
