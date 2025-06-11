@@ -6,14 +6,12 @@
 
 ## Catatan
 
-Form **Keputusan Kepala Desa** menggunakan data dari **Buku Peraturan Desa**,
-tetapi **tidak menggunakan** kolom **Surat Diundangkan** dan **Tanggal Surat
-Diundangkan**.  
-Form ini terpisah dari **Form Buku Peraturan Desa**, tetapi form tersebut juga
-bisa digunakan untuk membuat **Keputusan Kepala Desa**.  
-Jika opsi _Keputusan Kepala Desa_ dipilih di dalam **Buku Peraturan Desa**, maka
-kolom **Surat Diundangkan** dan **Tanggal Surat Diundangkan** tidak akan
-ditampilkan.
+Form Keputusan Kepala Desa menggunakan data dari Buku Peraturan Desa, tetapi
+tidak menggunakan kolom Surat Diundangkan dan Tanggal Surat Diundangkan.  
+Form ini terpisah dari Form Buku Peraturan Desa, tetapi form tersebut juga bisa
+digunakan untuk membuat Keputusan Kepala Desa.  
+Jika opsi Keputusan Kepala Desa dipilih di dalam Buku Peraturan Desa, maka kolom
+Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
 
 ## Status Fitur
 
@@ -21,7 +19,7 @@ ditampilkan.
 
 - **Tebal** = API sudah tersedia dan siap digunakan
 - _Miring_ = Catatan atau data belum tersedia
-- [x] = Fitur sudah selesai dibuat
+- - [x] = Fitur sudah selesai dibuat
 
 ### Administrasi > Buku Administrasi > Administrasi Umum
 
