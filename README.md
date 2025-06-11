@@ -3,6 +3,13 @@
 ## Komponen Baru
 
 - [ ] Chart
+- [ ] Map Location Picker
+
+## Fitur
+
+- [ ] Role based authentication for admin, penduduk, and aparatur desa
+      (_different admin panel view_)
+- [ ] TRPC file upload
 
 ## Catatan
 
@@ -13,13 +20,32 @@ digunakan untuk membuat Keputusan Kepala Desa.
 Jika opsi Keputusan Kepala Desa dipilih di dalam Buku Peraturan Desa, maka kolom
 Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
 
-## Status Fitur
+## Status Dashboard
 
 **Keterangan**:
 
-- **Tebal** = API sudah tersedia dan siap digunakan atau tidak perlu API
+- **Tebal** = API sudah tersedia dan siap digunakan
 - _Miring_ = Catatan atau data belum tersedia
 - - [x] = Fitur sudah selesai dibuat
+
+### Administrasi
+
+- [ ] Disposisi Surat (_tidak ada CRUD_)
+- [ ] Pendaftaran Akun (_hanya perlu form untuk verifikasi dan bisa dilihat di
+      demo panel, ubah nama menjadi Pendaftaran Pengguna_)
+- [ ] Verifikasi Data (_hanya perlu form untuk verifikasi dan bisa dilihat di
+      demo panel, ubah nama menjadi Verifikasi Pengguna_)
+- [ ] Laporan (_tidak ada CRUD_)
+- [ ] Statistik Surat (_tidak ada CRUD_)
+
+### Administrasi > Perubahan Data
+
+- [ ] NIK & KK (_hanya untuk edit dan menggunakan API dari Kependudukan >
+      Penduduk tapi dengan form yang berbeda, lihat demo panel lebih lanjut_)
+- [ ] Pindah KK (_hanya untuk edit dan menggunakan API dari Kependudukan > Kartu
+      Keluarga tapi dengan form yang berbeda, lihat demo panel lebih lanjut_)
+- [ ] Pengajuan Perubahan Data (_hanya perlu form untuk verifikasi dari user
+      yang mengajukan perubahan data_)
 
 ### Administrasi > Buku Administrasi > Administrasi Umum
 
@@ -47,7 +73,7 @@ Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
 
 ### Administrasi > Buku Administrasi > Administrasi Keuangan Desa
 
-- [ ] C1 Buku Anggaran Pendapatan dan Belanja Desa = anggaran (_lihat contoh
+- [ ] C1 Buku Anggaran Pendapatan dan Belanja Desa = anggaran (_lihat demo panel
       form_)
 - [ ] **C2 Buku Rencana Anggaran Biaya Desa** = rab
 - [ ] C3 Buku Kas Pembantu Kegiatan = kasPembantuKegiatan
@@ -63,8 +89,33 @@ Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
       inventarisHasilPembangunan
 - [ ] D4 Buku Kader Pemberdayaan Masyarakat Desa = kaderPemberdayaanMasyarakat
 
-### Administrasi > Lainnya
+### Kependudukan
 
-- [ ] Disposisi Surat (_tidak ada CRUD_)
-- [ ] Pendaftaran Akun (_hanya perlu form untuk verifikasi, ubah nama menjadi
-      Pendaftaran Pengguna_)
+- [ ] Kartu Keluarga = kartuKeluarga
+- [ ] Penduduk = penduduk (_memiliki relasi dengan kartu keluarga_)
+
+### Layanan
+
+- [ ] Kecamanatan = kecamatan (_fitur belum ada di demo panel_)
+
+### Informasi
+
+- [ ] Berita dan Pengumuman = berita (_perlu penambahan column ke table
+      database_)
+- [ ] Catatan = catatanPenduduk (_ubah menjadi Catatan Penduduk_)
+- [ ] Wisata = wisata (_perlu komponen Map Location Picker untuk memilih lokasi
+      wisata, lihat demo panel_)
+- [ ] Informasi Anggaran = infoAnggaran
+- [ ] Informasi PPID = infoPpid
+
+### Informasi > Bantuan Sosial
+
+- [ ] Data Kategori Bantuan Sosial = kategoriBansos
+- [ ] Data Bantuan Sosial = bansos, detailBansos (_butuh data kategoriBansos,
+      lebih jelas lihat demo panel_)
+- [ ] Data Statistik (_tidak ada CRUD_)
+
+### Data Potensi
+
+- [ ] Grafik (_tidak ada CRUD_)
+- [ ] Laporan (_tidak ada CRUD_)
