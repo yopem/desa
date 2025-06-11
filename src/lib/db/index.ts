@@ -5,7 +5,11 @@ import { agendaTable } from "./schema/agenda"
 import { beritaTable } from "./schema/berita"
 import { ekspedisiTable } from "./schema/ekspedisi"
 import { inventarisTable } from "./schema/inventaris"
+import { jenisKelaminEnum } from "./schema/jenis-kelamin"
+import { jenisPekerjaanEnum } from "./schema/jenis-pekerjaan"
+import { kebangsaanEnum } from "./schema/kebangsaan"
 import { lembaranTable } from "./schema/lembaran"
+import { pendudukSementaraTable } from "./schema/penduduk-sementara"
 import { peraturanTable } from "./schema/peraturan"
 import { rabTable } from "./schema/rab"
 import { tanahTable } from "./schema/tanah"
@@ -23,7 +27,11 @@ export const db = drizzle(databaseUrl, {
     beritaTable,
     ekspedisiTable,
     inventarisTable,
+    jenisKelaminEnum,
+    jenisPekerjaanEnum,
+    kebangsaanEnum,
     lembaranTable,
+    pendudukSementaraTable,
     peraturanTable,
     rabTable,
     tanahKasTable,

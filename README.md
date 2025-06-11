@@ -13,12 +13,14 @@
 
 ## Catatan
 
-Form Keputusan Kepala Desa menggunakan data dari Buku Peraturan Desa, tetapi
-tidak menggunakan kolom Surat Diundangkan dan Tanggal Surat Diundangkan.  
-Form ini terpisah dari Form Buku Peraturan Desa, tetapi form tersebut juga bisa
-digunakan untuk membuat Keputusan Kepala Desa.  
-Jika opsi Keputusan Kepala Desa dipilih di dalam Buku Peraturan Desa, maka kolom
-Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
+- Form Keputusan Kepala Desa menggunakan data dari Buku Peraturan Desa, tetapi
+  tidak menggunakan kolom Surat Diundangkan dan Tanggal Surat Diundangkan.  
+  Form ini terpisah dari Form Buku Peraturan Desa, tetapi form tersebut juga
+  bisa digunakan untuk membuat Keputusan Kepala Desa.  
+  Jika opsi Keputusan Kepala Desa dipilih di dalam Buku Peraturan Desa, maka
+  kolom Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
+- Data Jenis Pekerjaan ambil di @/lib/db/schema/pekerjaan tidak perlu menulis
+  manual untuk Select Form, Type atau use case lainnya.
 
 ## Status Dashboard
 
@@ -67,7 +69,7 @@ Surat Diundangkan dan Tanggal Surat Diundangkan tidak akan ditampilkan.
 - [ ] B2 Buku Mutasi Penduduk Desa = mutasi (_butuh data penduduk desa_)
 - [ ] B3 Buku Rekapitulasi Jumlah Penduduk Desa = rekapitulasi (_butuh data
       penduduk desa, tidak ada CRUD_)
-- [ ] B4 Buku Penduduk Sementara = pendudukSementara
+- [ ] **B4 Buku Penduduk Sementara** = pendudukSementara
 - [ ] B5 Buku KTP dan Kartu Keluarga = ktpKk (_butuh data penduduk desa, tidak
       ada CRUD_)
 
