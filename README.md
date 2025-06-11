@@ -3,6 +3,7 @@
 ## Komponen Baru
 
 - [ ] Chart
+- [ ] Combo Box
 - [ ] Map Location Picker
 
 ## Fitur
