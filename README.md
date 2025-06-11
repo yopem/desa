@@ -35,6 +35,7 @@
         penduduk desa, tidak ada crud)
 
 - Administrasi > Buku Administrasi > Administrasi Keuangan Desa
+
   - [ ] C1 Buku Anggaran Pendapatan dan Belanja Desa = anggaran (_lihat contoh
         form_)
   - [x] C2 Buku Rencana Anggaran Biaya Desa = rab
@@ -42,3 +43,11 @@
   - [ ] C4 Buku Kas Umum = kas_umum
   - [ ] C5 Buku Kas Pembantu = kas_pembantu
   - [ ] C6 Buku Bank Desa = bank
+
+- Administrasi > Buku Administrasi > Administrasi Pembangunan
+  - [ ] D1 Buku Rencana Kerja Pembangunan Desa = rencana_kerja_pembangunan
+  - [ ] D2 Buku Kegiatan Pembangunan Desa = kegiatan_pembangunan
+  - [ ] D3 Buku Inventaris Hasil - hasil Pembangunan Desa =
+        inventaris_hasil_pembangunan
+  - [ ] D4 Buku Kader Pemberdayaan Masyarakat Desa =
+        kader_pemberdayaan_masyarakat
