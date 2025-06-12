@@ -8,7 +8,7 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button"
 import { ControlledTable } from "@/components/ui/controlled-table"
 import { Skeleton } from "@/components/ui/skeleton"
-import { tableColumnRegistry } from "@/lib/data-registry/table-column-registry"
+import { tableColumnRegistry } from "@/lib/data/table-column-registry"
 import type { InsertAgenda } from "@/lib/db/schema/agenda"
 import { useTRPC } from "@/lib/trpc/client"
 

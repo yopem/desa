@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 
 import { Button } from "@/components/ui/button"
@@ -13,13 +14,16 @@ export default function AgendaForm() {
   const handleError = useHandleTRPCError()
 
   const trpc = useTRPC()
+  const router = useRouter()
 
   const { mutate: createAgenda } = useMutation(
     trpc.agenda.create.mutationOptions({
       onSuccess: () => {
+        // Fix not working toast
         toast({
           description: "Berhasil membuat agenda",
         })
+        router.push("/buku-a7")
       },
       onError: (error) => {
         handleError(error, "Gagal membuat agenda")
@@ -74,6 +78,7 @@ export default function AgendaForm() {
         {(field) => (
           <form.FormItem>
             <form.FormLabel>Jenis Surat</form.FormLabel>
+            {/* Fix later error on modal mode */}
             <field.SelectField
               options={[
                 { label: "Surat Masuk", value: "surat_masuk" },

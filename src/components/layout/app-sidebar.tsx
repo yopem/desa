@@ -31,11 +31,6 @@ const AppSidebar = (props: AppSidebarProps) => {
         icon: "Gauge" as const,
       },
       {
-        name: "Buku Aq",
-        url: "/buku/a1",
-        icon: "Users" as const,
-      },
-      {
         name: "Pengguna",
         url: "/user",
         icon: "Users" as const,

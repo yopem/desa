@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import AgendaForm from "@/components/pages/buku-a7/create-agenda-form"
 import { Skeleton } from "@/components/ui/skeleton"
+import AgendaForm from "./form"
 
 export const metadata = {
   title: "Buat Agenda",

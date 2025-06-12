@@ -14,10 +14,10 @@ import { getCurrentSession } from "@/lib/auth/session"
 
 export default async function ProtectedLayout({
   children,
-  modal,
+  dialog,
 }: {
   children: React.ReactNode
-  modal: React.ReactNode
+  dialog: React.ReactNode
 }) {
   const { user } = await getCurrentSession()
 
@@ -50,7 +50,7 @@ export default async function ProtectedLayout({
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <div className="@container/main flex flex-1 flex-col gap-2">
             {children}
-            {modal}
+            {dialog}
           </div>
         </div>
       </SidebarInset>
