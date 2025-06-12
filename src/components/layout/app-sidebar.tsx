@@ -44,32 +44,32 @@ const AppSidebar = (props: AppSidebarProps) => {
     navBuku: [
       {
         name: "A1. Buku Peraturan Desa",
-        url: "/dashboard/buku-a1",
+        url: "/buku-a1",
         icon: "Settings" as const,
       },
       {
         name: "A2. Buku Keuangan Desa",
-        url: "/dashboard/buku-a2",
+        url: "/buku-a2",
         icon: "DollarSign" as const,
       },
       {
         name: "A3. Buku Inventaris Desa",
-        url: "/dashboard/buku-a3",
+        url: "/buku-a3",
         icon: "Archive" as const,
       },
       {
         name: "A4. Buku Tanah Desa",
-        url: "/dashboard/buku-a4",
+        url: "/buku-a4",
         icon: "MapPin" as const,
       },
       {
         name: "A5. Buku Peristiwa Desa",
-        url: "/dashboard/buku-a5",
+        url: "/buku-a5",
         icon: "Calendar" as const,
       },
       {
         name: "A6. Buku Keluarga Desa",
-        url: "/dashboard/buku-a6",
+        url: "/buku-a6",
         icon: "Users" as const,
       },
       {
@@ -79,12 +79,12 @@ const AppSidebar = (props: AppSidebarProps) => {
       },
       {
         name: "A8. Buku Agenda Desa",
-        url: "/dashboard/buku-a8",
+        url: "/buku-a8",
         icon: "BookOpen" as const,
       },
       {
         name: "A9. Buku Kewarganegaraan Desa",
-        url: "/dashboard/buku-a9",
+        url: "/buku-a9",
         icon: "Globe" as const,
       },
     ],
