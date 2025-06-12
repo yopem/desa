@@ -7,7 +7,11 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "@/lib/api/trpc"
-import { insertBeritaSchema, updateBeritaSchema } from "@/lib/db/schema/berita"
+import {
+  insertBeritaSchema,
+  updateBeritaSchema,
+  type SelectBerita,
+} from "@/lib/db/schema/berita"
 import {
   countBeritas,
   deleteBerita,
@@ -34,8 +38,9 @@ export const beritaRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateBeritaSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateBerita(input))
+      const { data, error } = await tryCatch(
+        updateBerita(input as SelectBerita),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

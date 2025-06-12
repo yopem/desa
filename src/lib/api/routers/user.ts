@@ -7,15 +7,29 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "@/lib/api/trpc"
+import { updateUserSchema, type SelectUser } from "@/lib/db/schema/user"
 import {
   countUsers,
   deleteUser,
   getUserByUsername,
   getUsers,
   searchUsers,
+  updateUser,
 } from "@/lib/db/service/user"
 
 export const userRouter = createTRPCRouter({
+  update: adminProtectedProcedure
+    .input(updateUserSchema)
+    .mutation(async ({ input }) => {
+      const { data, error } = await tryCatch(updateUser(input as SelectUser))
+      if (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error inserting agenda",
+        })
+      }
+      return data
+    }),
   delete: adminProtectedProcedure
     .input(z.string())
     .mutation(async ({ input }) => {
