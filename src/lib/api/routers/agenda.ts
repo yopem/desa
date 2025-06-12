@@ -7,7 +7,11 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "@/lib/api/trpc"
-import { insertAgendaSchema, updateAgendaSchema } from "@/lib/db/schema/agenda"
+import {
+  insertAgendaSchema,
+  updateAgendaSchema,
+  type SelectAgenda,
+} from "@/lib/db/schema/agenda"
 import {
   countAgendas,
   deleteAgenda,
@@ -34,8 +38,9 @@ export const agendaRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateAgendaSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateAgenda(input))
+      const { data, error } = await tryCatch(
+        updateAgenda(input as SelectAgenda),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

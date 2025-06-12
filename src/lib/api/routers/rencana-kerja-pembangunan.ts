@@ -8,43 +8,45 @@ import {
   publicProcedure,
 } from "@/lib/api/trpc"
 import {
-  insertTanahKasSchema,
-  updateTanahKasSchema,
-  type SelectTanahKas,
-} from "@/lib/db/schema/tanah-kas"
+  insertRencanaKerjaPembangunanSchema,
+  updateRencanaKerjaPembangunanSchema,
+  type SelectRencanaKerjaPembangunan,
+} from "@/lib/db/schema/rencana-kerja-pembangunan"
 import {
-  countTanahKases,
-  deleteTanahKas,
-  getTanahKases,
-  insertTanahKas,
-  searchTanahKases,
-  updateTanahKas,
-} from "@/lib/db/service/tanah-kas"
+  countRencanaKerjaPembangunans,
+  deleteRencanaKerjaPembangunan,
+  getRencanaKerjaPembangunans,
+  insertRencanaKerjaPembangunan,
+  searchRencanaKerjaPembangunans,
+  updateRencanaKerjaPembangunan,
+} from "@/lib/db/service/rencana-kerja-pembangunan"
 
-export const tanahKasRouter = createTRPCRouter({
+export const rencanaKerjaPembangunanRouter = createTRPCRouter({
   create: adminProtectedProcedure
-    .input(insertTanahKasSchema)
+    .input(insertRencanaKerjaPembangunanSchema)
     .mutation(async ({ input }) => {
-      const { data, error } = await tryCatch(insertTanahKas(input))
+      const { data, error } = await tryCatch(
+        insertRencanaKerjaPembangunan(input),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Error inserting tanahKas",
+          message: "Error inserting rencanaKerjaPembangunan",
         })
       }
       return data
     }),
 
   update: adminProtectedProcedure
-    .input(updateTanahKasSchema)
+    .input(updateRencanaKerjaPembangunanSchema)
     .mutation(async ({ input }) => {
       const { data, error } = await tryCatch(
-        updateTanahKas(input as SelectTanahKas),
+        updateRencanaKerjaPembangunan(input as SelectRencanaKerjaPembangunan),
       )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Error inserting tanahKas",
+          message: "Error inserting rencanaKerjaPembangunan",
         })
       }
       return data
@@ -53,11 +55,13 @@ export const tanahKasRouter = createTRPCRouter({
   delete: adminProtectedProcedure
     .input(z.string())
     .mutation(async ({ input }) => {
-      const { data, error } = await tryCatch(deleteTanahKas(input))
+      const { data, error } = await tryCatch(
+        deleteRencanaKerjaPembangunan(input),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Error deleting tanahKas",
+          message: "Error deleting rencanaKerjaPembangunan",
         })
       }
       return data
@@ -67,12 +71,12 @@ export const tanahKasRouter = createTRPCRouter({
     .input(z.object({ page: z.number(), perPage: z.number() }))
     .query(async ({ input }) => {
       const { data, error } = await tryCatch(
-        getTanahKases(input.page, input.perPage),
+        getRencanaKerjaPembangunans(input.page, input.perPage),
       )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Error fetching tanahKases",
+          message: "Error fetching rencanaKerjaPembangunans",
         })
       }
       return data
@@ -81,22 +85,24 @@ export const tanahKasRouter = createTRPCRouter({
   search: publicProcedure
     .input(z.object({ searchQuery: z.string(), limit: z.number() }))
     .query(async ({ input }) => {
-      const { data, error } = await tryCatch(searchTanahKases(input))
+      const { data, error } = await tryCatch(
+        searchRencanaKerjaPembangunans(input),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Error fetching tanahKases",
+          message: "Error fetching rencanaKerjaPembangunans",
         })
       }
       return data
     }),
 
   count: publicProcedure.query(async () => {
-    const { data, error } = await tryCatch(countTanahKases())
+    const { data, error } = await tryCatch(countRencanaKerjaPembangunans())
     if (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
-        message: "Error counting tanahKases",
+        message: "Error counting rencanaKerjaPembangunans",
       })
     }
     return data

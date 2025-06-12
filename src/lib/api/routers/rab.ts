@@ -7,7 +7,11 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "@/lib/api/trpc"
-import { insertRABSchema, updateRABSchema } from "@/lib/db/schema/rab"
+import {
+  insertRABSchema,
+  updateRABSchema,
+  type SelectRAB,
+} from "@/lib/db/schema/rab"
 import {
   countRABs,
   deleteRAB,
@@ -34,8 +38,7 @@ export const rabRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateRABSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateRAB(input))
+      const { data, error } = await tryCatch(updateRAB(input as SelectRAB))
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

@@ -10,6 +10,7 @@ import {
 import {
   insertEkspedisiSchema,
   updateEkspedisiSchema,
+  type SelectEkspedisi,
 } from "@/lib/db/schema/ekspedisi"
 import {
   countEkspedisis,
@@ -37,8 +38,9 @@ export const ekspedisiRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateEkspedisiSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateEkspedisi(input))
+      const { data, error } = await tryCatch(
+        updateEkspedisi(input as SelectEkspedisi),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

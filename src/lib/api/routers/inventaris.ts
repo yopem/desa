@@ -10,6 +10,7 @@ import {
 import {
   insertInventarisSchema,
   updateInventarisSchema,
+  type SelectInventaris,
 } from "@/lib/db/schema/inventaris"
 import {
   countInventarises,
@@ -37,8 +38,9 @@ export const inventarisRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateInventarisSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateInventaris(input))
+      const { data, error } = await tryCatch(
+        updateInventaris(input as SelectInventaris),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

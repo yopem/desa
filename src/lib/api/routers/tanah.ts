@@ -7,7 +7,11 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "@/lib/api/trpc"
-import { insertTanahSchema, updateTanahSchema } from "@/lib/db/schema/tanah"
+import {
+  insertTanahSchema,
+  updateTanahSchema,
+  type SelectTanah,
+} from "@/lib/db/schema/tanah"
 import {
   countTanahs,
   deleteTanah,
@@ -34,8 +38,7 @@ export const tanahRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateTanahSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateTanah(input))
+      const { data, error } = await tryCatch(updateTanah(input as SelectTanah))
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

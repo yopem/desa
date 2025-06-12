@@ -92,6 +92,13 @@
       "when": 1749613540974,
       "tag": "0012_lowly_black_bird",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1749724318549,
+      "tag": "0013_worthless_jack_power",
+      "breakpoints": true
     }
   ]
 }

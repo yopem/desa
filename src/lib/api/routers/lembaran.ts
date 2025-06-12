@@ -10,6 +10,7 @@ import {
 import {
   insertLembaranSchema,
   updateLembaranSchema,
+  type SelectLembaran,
 } from "@/lib/db/schema/lembaran"
 import {
   countLembarans,
@@ -37,8 +38,9 @@ export const lembaranRouter = createTRPCRouter({
   update: adminProtectedProcedure
     .input(updateLembaranSchema)
     .mutation(async ({ input }) => {
-      // @ts-expect-error FIX: zod schema make date optional
-      const { data, error } = await tryCatch(updateLembaran(input))
+      const { data, error } = await tryCatch(
+        updateLembaran(input as SelectLembaran),
+      )
       if (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
