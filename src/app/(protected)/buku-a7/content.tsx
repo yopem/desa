@@ -54,8 +54,9 @@ export default function AgendaContent() {
       <div className="relative min-h-[100vh] w-full overflow-auto">
         <ControlledTable<InsertAgenda>
           manualMode={false}
-          data={agendas}
+          rawData={agendas}
           columns={[...tableColumnRegistry.agenda]}
+          tableKey="agenda"
         />
       </div>
     </div>
