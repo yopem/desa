@@ -8,6 +8,7 @@ import { inventarisTable } from "./schema/inventaris"
 import { inventarisHasilPembangunanTable } from "./schema/inventaris-hasil-pembangunan"
 import { jenisKelaminEnum } from "./schema/jenis-kelamin"
 import { jenisPekerjaanEnum } from "./schema/jenis-pekerjaan"
+import { kaderPemberdayaanMasyarakatTable } from "./schema/kader-pemberdayaan-masyarakat"
 import { kebangsaanEnum } from "./schema/kebangsaan"
 import { kegiatanPembangunanTable } from "./schema/kegiatan-pembangunan"
 import { lembaranTable } from "./schema/lembaran"
@@ -33,6 +34,7 @@ export const db = drizzle(databaseUrl, {
     inventarisTable,
     jenisKelaminEnum,
     jenisPekerjaanEnum,
+    kaderPemberdayaanMasyarakatTable,
     kebangsaanEnum,
     kegiatanPembangunanTable,
     lembaranTable,

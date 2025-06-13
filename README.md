@@ -90,7 +90,8 @@
 - [ ] **D2 Buku Kegiatan Pembangunan Desa** = kegiatanPembangunan
 - [ ] **D3 Buku Inventaris Hasil-hasil Pembangunan Desa** =
       inventarisHasilPembangunan
-- [ ] D4 Buku Kader Pemberdayaan Masyarakat Desa = kaderPemberdayaanMasyarakat
+- [ ] **D4 Buku Kader Pemberdayaan Masyarakat Desa** =
+      kaderPemberdayaanMasyarakat
 
 ### Kependudukan
 
