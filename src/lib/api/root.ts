@@ -7,6 +7,7 @@ import { agendaRouter } from "./routers/agenda"
 import { beritaRouter } from "./routers/berita"
 import { ekspedisiRouter } from "./routers/ekspedisi"
 import { inventarisRouter } from "./routers/inventaris"
+import { inventarisHasilPembangunanRouter } from "./routers/inventaris-hasil-pembangunan"
 import { kegiatanPembangunanRouter } from "./routers/kegiatan-pembangunan"
 import { lembaranRouter } from "./routers/lembaran"
 import { rabRouter } from "./routers/rab"
@@ -23,6 +24,7 @@ export const appRouter = createTRPCRouter({
   berita: beritaRouter,
   ekspedisi: ekspedisiRouter,
   inventaris: inventarisRouter,
+  inventarisHasilPembangunan: inventarisHasilPembangunanRouter,
   kegiatanPembangunan: kegiatanPembangunanRouter,
   lembaran: lembaranRouter,
   rab: rabRouter,
