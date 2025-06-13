@@ -135,10 +135,10 @@ export function ControlledTable<TData extends RowData>({
 
   return (
     <div>
-      <Table className="min-w-full border border-gray-200">
+      <Table className="min-w-full border">
         <TableHeader>
           {table.getHeaderGroups().map((hg) => (
-            <TableRow key={hg.id} className="bg-gray-100">
+            <TableRow key={hg.id} className="bg-muted">
               {hg.headers.map((header) => (
                 <TableHead
                   key={header.id}
@@ -202,7 +202,7 @@ export function ControlledTable<TData extends RowData>({
             </TableRow>
           ) : (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} className="hover:bg-gray-50">
+              <TableRow key={row.id} className="hover:bg-muted/90">
                 {row.getVisibleCells().map((cell) => (
                   <>
                     <TableCell

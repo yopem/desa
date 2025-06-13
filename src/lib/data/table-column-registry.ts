@@ -1,6 +1,10 @@
 export const tableColumnRegistry = {
   agenda: [
-    { header: "Jenis Surat", accessorKey: "jenisSurat" },
+    {
+      header: "Jenis Surat",
+      accessorKey: "jenisSurat",
+      meta: { filterVariant: "select" },
+    },
     { header: "Uraian", accessorKey: "uraian" },
     { header: "Keterangan Tambahan", accessorKey: "keteranganTambahan" },
     {

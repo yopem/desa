@@ -185,12 +185,14 @@ export interface SelectFieldProps {
     value: string
     disabled?: boolean
   }[]
+  mode?: "portal" | "inline"
 }
 
 export const SelectField = ({
   label,
   placeholder = "Select...",
   options,
+  mode = "portal",
 }: SelectFieldProps) => {
   const field = useFieldContext<string>()
 
@@ -214,7 +216,7 @@ export const SelectField = ({
         </SelectTrigger>
       </div>
 
-      <SelectContent className="w-full">
+      <SelectContent mode={mode} className="w-full">
         <SelectItemGroup>
           {collection.items.map((item) => (
             <SelectItem key={item.value} item={item}>

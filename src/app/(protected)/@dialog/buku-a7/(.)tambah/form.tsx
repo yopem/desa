@@ -23,7 +23,8 @@ export default function AgendaForm() {
         toast({
           description: "Berhasil membuat agenda",
         })
-        router.push("/buku-a7")
+        router.back()
+        console.log("Agenda created successfully")
       },
       onError: (error) => {
         handleError(error, "Gagal membuat agenda")
@@ -80,6 +81,7 @@ export default function AgendaForm() {
             <form.FormLabel>Jenis Surat</form.FormLabel>
             {/* Fix later error on modal mode */}
             <field.SelectField
+              mode="inline"
               options={[
                 { label: "Surat Masuk", value: "surat_masuk" },
                 { label: "Surat Keluar", value: "surat_keluar" },
