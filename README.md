@@ -86,7 +86,7 @@
 
 ### Administrasi > Buku Administrasi > Administrasi Pembangunan
 
-- [ ] D1 Buku Rencana Kerja Pembangunan Desa = rencanaKerjaPembangunan
+- [x] D1 Buku Rencana Kerja Pembangunan Desa = rencanaKerjaPembangunan
 - [ ] D2 Buku Kegiatan Pembangunan Desa = kegiatanPembangunan
 - [ ] D3 Buku Inventaris Hasil-hasil Pembangunan Desa =
       inventarisHasilPembangunan
