@@ -1,8 +1,12 @@
 import * as React from "react"
+import dynamicFn from "next/dynamic"
 
 import { Skeleton } from "@/components/ui/skeleton"
-import AgendaForm from "./form"
 
+const AgendaForm = dynamicFn(async () => {
+  const AgendaForm = await import("./form")
+  return AgendaForm
+})
 export const metadata = {
   title: "Buat Agenda",
 }
