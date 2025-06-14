@@ -51,6 +51,7 @@ const config = {
       dynamic: 30,
       static: 180,
     },
+    optimizePackageImports: ["@yopem-ui/react-icons"],
   },
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,
