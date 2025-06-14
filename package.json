@@ -58,7 +58,6 @@
     "zod": "^3.25.53"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.4.0-canary.68",
     "@tailwindcss/postcss": "^4.1.8",
     "@tanstack/react-query-devtools": "^5.80.6",
@@ -66,7 +65,7 @@
     "@types/node": "^22.15.30",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
-    "@yopem/eslint-config": "^0.1.18",
+    "@yopem/eslint-config": "^0.2.0",
     "@yopem/prettier-config": "^0.1.6",
     "@yopem/typescript-config": "^0.1.0",
     "drizzle-kit": "^0.31.1",
