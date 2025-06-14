@@ -343,7 +343,6 @@ function SelectFilter<TData extends RowData>({
       collection={rangeCollection}
       onValueChange={(e) => {
         column.setFilterValue(e.value[0])
-        console.log("fired select filter", e.value[0])
       }}
     >
       <SelectTrigger className="!h-8 w-32 p-2">
