@@ -2,12 +2,24 @@
 
 import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
+import { z } from "zod"
 
 import { useToast } from "@/components/toast-provider"
 import { Button } from "@/components/ui/button"
 import { useAppForm } from "@/components/ui/form"
 import { useTRPC } from "@/lib/trpc/client"
 import { useHandleTRPCError } from "@/lib/utils/error"
+
+const formSchema = z.object({
+  jenisSurat: z.enum(["surat_masuk", "surat_keluar"], {
+    errorMap: () => ({ message: "Jenis surat tidak valid" }),
+  }),
+  uraian: z.string().min(1, { message: "Uraian wajib diisi" }).trim(),
+  keteranganTambahan: z
+    .string({ required_error: "Keterangan tambahan harus berupa teks" })
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+})
 
 export default function AgendaForm() {
   const { toast } = useToast()
@@ -31,35 +43,16 @@ export default function AgendaForm() {
     }),
   )
 
+  const defaultValues: z.input<typeof formSchema> = {
+    jenisSurat: "surat_masuk" as const,
+    uraian: "",
+    keteranganTambahan: "",
+  }
+
   const form = useAppForm({
-    defaultValues: {
-      jenisSurat: "surat_masuk" as const,
-      uraian: "",
-      keteranganTambahan: "",
-    },
+    defaultValues,
     validators: {
-      onChange: ({ value }) => {
-        return {
-          fields: {
-            jenisSurat: !["surat_masuk", "surat_keluar"].includes(
-              value.jenisSurat,
-            )
-              ? "Jenis surat tidak valid"
-              : undefined,
-
-            uraian:
-              !value.uraian || value.uraian.trim() === ""
-                ? "Uraian wajib diisi"
-                : undefined,
-
-            keteranganTambahan:
-              value.keteranganTambahan &&
-              typeof value.keteranganTambahan !== "string"
-                ? "Keterangan tambahan harus berupa teks"
-                : null,
-          },
-        }
-      },
+      onChange: formSchema,
     },
     onSubmit: ({ value }) => {
       createAgenda(value)
