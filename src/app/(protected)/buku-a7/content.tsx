@@ -2,22 +2,22 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
 import { useSuspenseQuery } from "@tanstack/react-query"
+import type { PaginationState } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/button"
 import { ControlledTable } from "@/components/ui/controlled-table"
 import { Skeleton } from "@/components/ui/skeleton"
 import { tableColumnRegistry } from "@/lib/data/table-column-registry"
+import { tableDataMapperRegistry } from "@/lib/data/table-data-mapper"
 import type { InsertAgenda } from "@/lib/db/schema/agenda"
 import { useTRPC } from "@/lib/trpc/client"
 
 export default function AgendaContent() {
-  const searchParams = useSearchParams()
-
-  const page = searchParams.get("page")
-
-  const perPage = 10
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
 
   const trpc = useTRPC()
 
@@ -25,14 +25,20 @@ export default function AgendaContent() {
     trpc.agenda.count.queryOptions(),
   )
 
-  const { data: agendas } = useSuspenseQuery(
+  const { data: rawData } = useSuspenseQuery(
     trpc.agenda.all.queryOptions({
-      page: page ? parseInt(page) : 1,
-      perPage: perPage,
+      page: pagination.pageIndex + 1,
+      perPage: pagination.pageSize,
     }),
   )
+  const lastPage = agendasCount && Math.ceil(agendasCount / pagination.pageSize)
 
-  if (agendas.length === 0 || !agendasCount) {
+  const mapFn = tableDataMapperRegistry.agenda
+  const data = (
+    typeof mapFn === "function" ? mapFn(rawData) : rawData
+  ) as InsertAgenda[]
+
+  if (rawData.length === 0 || !agendasCount) {
     return (
       <div className="my-64 flex items-center justify-center">
         <Skeleton />
@@ -53,10 +59,11 @@ export default function AgendaContent() {
       </div>
       <div className="relative min-h-[100vh] w-full overflow-auto">
         <ControlledTable<InsertAgenda>
-          manualMode={false}
-          rawData={agendas}
+          data={data}
+          setPagination={setPagination}
+          pagination={pagination}
+          totalPages={lastPage}
           columns={[...tableColumnRegistry.agenda]}
-          tableKey="agenda"
         />
       </div>
     </div>

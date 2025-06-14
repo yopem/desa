@@ -20,7 +20,6 @@ import {
 import { Icon } from "@yopem-ui/react-icons"
 import { cn } from "@yopem-ui/utils"
 
-import { tableDataMapperRegistry } from "@/lib/data/table-data-mapper"
 import { Input } from "./input"
 import {
   Pagination,
@@ -54,8 +53,7 @@ export const createColumnHelperInstance = <TData extends RowData>() =>
 
 interface ControlledTableProps<TData extends RowData> {
   columns: ColumnDef<TData, unknown>[]
-  rawData: TData[]
-  manualMode: boolean
+  data: TData[]
   totalPages?: number
   isLoading?: boolean
   pagination?: PaginationState
@@ -73,15 +71,13 @@ interface ControlledTableProps<TData extends RowData> {
       | ((old: ColumnFiltersState) => ColumnFiltersState),
   ) => void
   pageSizeOptions?: number[]
-  tableKey: keyof typeof tableDataMapperRegistry
 }
 
 export function ControlledTable<TData extends RowData>({
   columns,
-  rawData,
-  manualMode = true,
-  totalPages = 1,
-  isLoading = false,
+  data,
+  totalPages,
+
   pagination,
   sorting,
   columnFilters,
@@ -89,7 +85,6 @@ export function ControlledTable<TData extends RowData>({
   setSorting,
   setColumnFilters,
   pageSizeOptions = [10, 20, 30],
-  tableKey,
 }: ControlledTableProps<TData>) {
   const [internalPagination, setInternalPagination] =
     React.useState<PaginationState>({
@@ -100,28 +95,21 @@ export function ControlledTable<TData extends RowData>({
   const [internalColumnFilters, setInternalColumnFilters] =
     React.useState<ColumnFiltersState>([])
 
-  const mapFn = tableDataMapperRegistry[tableKey]
-  const data = (
-    typeof mapFn === "function" ? mapFn(rawData) : rawData
-  ) as TData[]
-
   const table = useReactTable<TData>({
     data,
     columns,
     state: {
-      pagination: manualMode ? pagination : internalPagination,
-      sorting: manualMode ? sorting : internalSorting,
-      columnFilters: manualMode ? columnFilters : internalColumnFilters,
+      pagination: pagination ?? internalPagination,
+      sorting: sorting ?? internalSorting,
+      columnFilters: columnFilters ?? internalColumnFilters,
     },
-    manualFiltering: manualMode,
-    manualSorting: manualMode,
-    manualPagination: manualMode,
-    pageCount: manualMode ? totalPages : undefined,
-    onPaginationChange: manualMode ? setPagination : setInternalPagination,
-    onSortingChange: manualMode ? setSorting : setInternalSorting,
-    onColumnFiltersChange: manualMode
-      ? setColumnFilters
-      : setInternalColumnFilters,
+    manualFiltering: columnFilters ? true : false,
+    manualSorting: sorting ? true : false,
+    manualPagination: pagination ? true : false,
+    pageCount: totalPages,
+    onPaginationChange: setPagination ?? setInternalPagination,
+    onSortingChange: setSorting ?? setInternalSorting,
+    onColumnFiltersChange: setColumnFilters ?? setInternalColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -132,6 +120,8 @@ export function ControlledTable<TData extends RowData>({
   const pageSizeCollection: ListCollection = createListCollection({
     items: pageSizeOptions.map((size) => String(size)),
   })
+
+  console.log(table.getCoreRowModel(), "sesudah", table.getRowModel())
 
   return (
     <div>
@@ -188,38 +178,19 @@ export function ControlledTable<TData extends RowData>({
         </TableHeader>
 
         <TableBody>
-          {isLoading ? (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="p-4 text-center">
-                Loading...
-              </TableCell>
+          {table.getRowModel().rows.map((row) => (
+            <TableRow key={row.id} className="hover:bg-muted/90">
+              {row.getVisibleCells().map((cell) => (
+                <TableCell
+                  key={cell.id}
+                  className="truncate border px-3 py-2"
+                  title={String(cell.getValue())}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
+              ))}
             </TableRow>
-          ) : rawData.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="p-4 text-center">
-                No data found
-              </TableCell>
-            </TableRow>
-          ) : (
-            table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} className="hover:bg-muted/90">
-                {row.getVisibleCells().map((cell) => (
-                  <>
-                    <TableCell
-                      key={cell.id}
-                      className="truncate border px-3 py-2"
-                      title={String(cell.getValue())}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  </>
-                ))}
-              </TableRow>
-            ))
-          )}
+          ))}
         </TableBody>
       </Table>
 
@@ -365,6 +336,7 @@ function SelectFilter<TData extends RowData>({
       collection={rangeCollection}
       onValueChange={(e) => {
         column.setFilterValue(e.value[0])
+        console.log("fired select filter", e.value[0])
       }}
     >
       <SelectTrigger className="!h-8 w-32 p-2">
