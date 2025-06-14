@@ -6,7 +6,7 @@ import { jenisKelaminEnum } from "./jenis-kelamin"
 import { jenisPekerjaanEnum } from "./jenis-pekerjaan"
 import { kebangsaanEnum } from "./kebangsaan"
 
-export const pendudukSementaraTable = pgTable("pendudukSementara", {
+export const pendudukSementaraTable = pgTable("penduduk_sementara", {
   id: text()
     .primaryKey()
     .$defaultFn(() => createCustomId()),
