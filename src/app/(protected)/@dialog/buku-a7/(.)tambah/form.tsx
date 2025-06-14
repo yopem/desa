@@ -3,9 +3,9 @@
 import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 
+import { useToast } from "@/components/toast-provider"
 import { Button } from "@/components/ui/button"
 import { useAppForm } from "@/components/ui/form"
-import { useToast } from "@/components/ui/toast"
 import { useTRPC } from "@/lib/trpc/client"
 import { useHandleTRPCError } from "@/lib/utils/error"
 
