@@ -71,7 +71,6 @@ export default function AgendaForm() {
         {(field) => (
           <form.FormItem>
             <form.FormLabel>Jenis Surat</form.FormLabel>
-            {/* Fix later error on modal mode */}
             <field.SelectField
               options={[
                 { label: "Surat Masuk", value: "surat_masuk" },

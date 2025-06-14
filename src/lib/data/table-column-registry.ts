@@ -10,12 +10,10 @@ export const tableColumnRegistry = {
     {
       header: "Created At",
       accessorKey: "createdAt",
-      meta: { filterVariant: "range" },
     },
     {
       header: "Updated At",
       accessorKey: "updatedAt",
-      meta: { filterVariant: "range" },
     },
   ],
   berita: [

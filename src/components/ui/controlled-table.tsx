@@ -114,14 +114,12 @@ export function ControlledTable<TData extends RowData>({
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    autoResetPageIndex: false,
+    autoResetPageIndex: true,
   })
 
   const pageSizeCollection: ListCollection = createListCollection({
     items: pageSizeOptions.map((size) => String(size)),
   })
-
-  console.log(table.getCoreRowModel(), "sesudah", table.getRowModel())
 
   return (
     <div>
@@ -180,15 +178,17 @@ export function ControlledTable<TData extends RowData>({
         <TableBody>
           {table.getRowModel().rows.map((row) => (
             <TableRow key={row.id} className="hover:bg-muted/90">
-              {row.getVisibleCells().map((cell) => (
-                <TableCell
-                  key={cell.id}
-                  className="truncate border px-3 py-2"
-                  title={String(cell.getValue())}
-                >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
-              ))}
+              {row.getVisibleCells().map((cell) => {
+                return (
+                  <TableCell
+                    key={cell.id}
+                    className="truncate border px-3 py-2"
+                    title={String(cell.getValue())}
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                )
+              })}
             </TableRow>
           ))}
         </TableBody>
@@ -269,6 +269,13 @@ export function ControlledTable<TData extends RowData>({
               value={[String(table.getState().pagination.pageSize)]}
               collection={pageSizeCollection}
               onValueChange={(e) => {
+                if (setPagination) {
+                  setPagination((prev) => ({
+                    ...prev,
+                    pageSize: Number(e.value[0]),
+                    pageIndex: 0,
+                  }))
+                }
                 table.setPageSize(Number(e.value[0]))
               }}
             >
@@ -399,27 +406,6 @@ function Filter<TData extends RowData>({ column }: FilterProps<TData>) {
   } else if (filterVariant === "select") {
     return <SelectFilter<TData> column={column} />
   }
-  let displayValue = ""
-
-  if (
-    typeof columnFilterValue === "string" ||
-    typeof columnFilterValue === "number"
-  ) {
-    displayValue = String(columnFilterValue)
-  } else if (Array.isArray(columnFilterValue)) {
-    displayValue = columnFilterValue.map(String).join(", ")
-  } else {
-    displayValue = ""
-  }
-  return (
-    <DebouncedInput
-      className="w-36 rounded border shadow"
-      onChange={(value) => column.setFilterValue(value)}
-      placeholder="Search..."
-      type="text"
-      value={displayValue}
-    />
-  )
 }
 
 interface DebouncedInputProps
