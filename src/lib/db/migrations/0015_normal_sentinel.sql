@@ -1,0 +1,1 @@
+ALTER TABLE "kegiatan_pembangunan" RENAME COLUMN "uraian" TO "nama_kegiatan";
